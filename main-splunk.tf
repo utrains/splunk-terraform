@@ -65,6 +65,21 @@ resource "aws_security_group" "web-sg" {
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
+    ingress {
+      description = "ssh from VPC splunk server"
+      from_port   = 8000
+      to_port     = 8000
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+  ingress {
+      description = "ssh from VPC splunk forwader"
+      from_port   = 9997
+      to_port     = 9997
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }    
     
   ingress {
     description = "http port"
@@ -109,7 +124,7 @@ resource "aws_instance" "splunk-server" {
   subnet_id              = aws_subnet.web-subnet.id
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   key_name               = aws_key_pair.ec2-key.key_name
-  //user_data            = file("file_for_our_bash_script.sh")
+  user_data            = file("splunk_script.sh")
   # Set the instance's root volume to 30 GB
   root_block_device {
     volume_size = 30
@@ -128,7 +143,7 @@ resource "aws_instance" "splunk-forwarder" {
   subnet_id              = aws_subnet.web-subnet.id
   vpc_security_group_ids = ["${aws_security_group.web-sg.id}"]
   key_name               = aws_key_pair.ec2-key.key_name
-  //user_data            = file("file_for_our_bash_script.sh")
+  user_data            = file("splunk_forwarder_script.sh")
   # Set the instance's root volume to 30 GB
   root_block_device {
     volume_size = 30
