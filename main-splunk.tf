@@ -132,6 +132,7 @@ resource "aws_instance" "splunk-server" {
 
  
   tags = {
+    Name = "splunk-server"
     owner   = "splunk"
     Environment = "dev"
   }
@@ -150,8 +151,9 @@ resource "aws_instance" "splunk-forwarder" {
   }
 
     tags = {
-    owner   = "splunk"
-    Environment = "dev"
+      Name = "splunk-forwarder"
+      owner   = "splunk"
+      Environment = "dev"
   }
 }
 
