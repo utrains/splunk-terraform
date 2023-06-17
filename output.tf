@@ -1,6 +1,6 @@
 # print the url of the splunk server and the splunk forwader
 output "ssh_splunk_forwader_command" {
-  value     = join ("", ["ssh -i keypair10.pem ec2-user@", aws_instance.splunk-forwarder.public_dns])
+  value     = join ("", ["ssh -i splunkkey.pem ec2-user@", aws_instance.splunk-forwarder.public_dns])
 }
 
 output "Connexion_link_for_the_splunk_server" {
@@ -11,5 +11,5 @@ output "Connexion_link_for_the_splunk_forwarder" {
 }
 
 output "ssh_splunk_server_command" {
-  value     = join ("", ["ssh -i keypair10.pem ec2-user@", aws_instance.splunk-server.public_dns])
+  value     = join ("", ["ssh -i splunkkey.pem ec2-user@", aws_instance.splunk-server.public_dns])
 }
