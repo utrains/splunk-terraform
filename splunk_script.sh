@@ -12,6 +12,7 @@ sudo tar -zxvf splunk-9.0.4.1-419ad9369127-Linux-x86_64.tgz -C /opt
 cd splunk/bin/
 # Start Splunk Enterprise and set up the admin user and password
 sudo ./splunk start --accept-license --answer-yes --no-prompt --seed-passwd "abcd1234"
+sudo ./splunk enable listen 9997 -auth admin:"abcd1234"
 #set the hostname
 #sudo ./splunk set servername splunk-server
 #enable splunk at the startup
