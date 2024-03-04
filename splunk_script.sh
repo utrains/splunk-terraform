@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo yum install wget
 cd /opt
 # Download the Splunk Enterprise tar file
 sudo wget -O splunk-9.0.4.1-419ad9369127-Linux-x86_64.tgz "https://download.splunk.com/products/splunk/releases/9.0.4.1/linux/splunk-9.0.4.1-419ad9369127-Linux-x86_64.tgz"
